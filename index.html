@@ -1,12 +1,336 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Your Name] — Coming Soon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14141a;
+    --muted: #6b6b76;
+    --line: #ececf1;
+    --bg: #ffffff;
+    --panel: #faf9fc;
+    --pink: #ec4899;
+    --purple: #8b5cf6;
+    --orange: #f97316;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, .brand {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, var(--pink), var(--purple) 55%, var(--orange));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 6vw;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 17px;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 8px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--panel);
+  }
+
+  .status-pill .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8vh 6vw 10vh;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--purple);
+    background: rgba(139, 92, 246, 0.08);
+    padding: 7px 14px;
+    border-radius: 999px;
+    margin-bottom: 26px;
+  }
+
+  .eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+  }
+
+  h1 {
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.1;
+    font-weight: 700;
+    margin: 0 0 22px;
+    letter-spacing: -0.01em;
+  }
+
+  .lede {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 0 34px;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .contact-link:hover { opacity: 0.9; }
+  .contact-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  /* Visual side */
+  .visual {
+    position: relative;
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    position: relative;
+    width: 300px;
+    height: 340px;
+    border-radius: 22px;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgba(139, 92, 246, 0.10),
+        rgba(139, 92, 246, 0.10) 10px,
+        transparent 10px,
+        transparent 20px
+      ),
+      #f5f3fa;
+    transform: rotate(-4deg);
+    box-shadow: 0 30px 60px -25px rgba(20, 20, 26, 0.25);
+  }
+
+  .card-footer {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px 18px;
+    transform: rotate(4deg);
+  }
+
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 999px;
+  }
+
+  .tag.purple { background: rgba(139, 92, 246, 0.12); color: var(--purple); }
+  .tag.pink { background: rgba(236, 72, 153, 0.12); color: var(--pink); }
+
+  .card-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .float-tag {
+    position: absolute;
+    top: 18px;
+    right: -10px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px 18px;
+    box-shadow: 0 20px 40px -20px rgba(20, 20, 26, 0.3);
+    font-size: 13px;
+  }
+
+  .float-tag .label {
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+
+  .float-tag .value {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .float-note {
+    position: absolute;
+    left: -16px;
+    bottom: 92px;
+    background: #14141a;
+    color: #fff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    transform: rotate(-3deg);
+    box-shadow: 0 20px 40px -18px rgba(20, 20, 26, 0.45);
+  }
+
+  .float-note .label {
+    font-size: 11px;
+    color: #b9b9c4;
+    margin-bottom: 2px;
+  }
+
+  .float-note .value {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    background: linear-gradient(90deg, #f472b6, #fb923c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 15px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 26px 6vw 40px;
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 860px) {
+    main {
+      grid-template-columns: 1fr;
+      padding-top: 6vh;
+    }
+    .visual { order: -1; height: 320px; margin-bottom: 10px; }
+    .card { width: 240px; height: 270px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my first website.</p>
+
+<nav>
+  <div class="brand">
+    <div class="brand-mark">AI</div>
+    Ayşe Inal
+  </div>
+  <div class="status-pill"><span class="dot"></span> Building in progress</div>
+</nav>
+
+<main>
+  <div class="copy">
+    <div class="eyebrow"><span class="dot"></span> Portfolio · Coming soon</div>
+    <h1>Something worth<br>the wait is <span class="gradient-text">under construction.</span></h1>
+    <p class="lede">
+      [Your Name]'s portfolio is being rebuilt from the ground up. Come back soon to see the finished work — or leave your email and be the first to know when it's live.
+    </p>
+    <a class="contact-link" href="mailto:hello@example.com">Say hello — hello@ayseinal.co.uk →</a>
+  </div>
+
+  <div class="visual">
+    <div class="card">
+      <div class="float-tag">
+        <div class="label">status</div>
+        <div class="value">in progress</div>
+      </div>
+      <div class="float-note">
+        <div class="label">launch</div>
+        <div class="value">coming soon</div>
+      </div>
+      <div class="card-footer">
+        <div class="tag-row">
+          <span class="tag purple">Portfolio</span>
+          <span class="tag pink">Draft</span>
+        </div>
+        <p class="card-title">New site — in the works</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2026 Ayşe Inal. All rights reserved.
+</footer>
+
 </body>
 </html>
