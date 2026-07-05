@@ -1,336 +1,149 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ayşe Inal — Coming Soon</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayse Inal — Instructional Designer &amp; E-Learning Developer</title>
+<meta name="description" content="Ayse Inal designs learning that changes behaviour — 20+ years of compliance, tech and operational training that is creative, evidence-based, and measurable.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #14141a;
-    --muted: #6b6b76;
-    --line: #ececf1;
-    --bg: #ffffff;
-    --panel: #faf9fc;
-    --pink: #ec4899;
-    --purple: #8b5cf6;
-    --orange: #f97316;
-  }
-
-  * { box-sizing: border-box; }
-
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, .brand {
-    font-family: 'Poppins', sans-serif;
-  }
-
-  .gradient-text {
-    background: linear-gradient(90deg, var(--pink), var(--purple) 55%, var(--orange));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 28px 6vw;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 700;
-    font-size: 17px;
-  }
-
-  .brand-mark {
-    width: 34px;
-    height: 34px;
-    border-radius: 9px;
-    background: linear-gradient(135deg, var(--pink), var(--purple));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  .status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--muted);
-    padding: 8px 14px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--panel);
-  }
-
-  .status-pill .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--orange);
-    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
-  }
-
-  main {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    align-items: center;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 8vh 6vw 10vh;
-  }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--purple);
-    background: rgba(139, 92, 246, 0.08);
-    padding: 7px 14px;
-    border-radius: 999px;
-    margin-bottom: 26px;
-  }
-
-  .eyebrow .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--purple);
-  }
-
-  h1 {
-    font-size: clamp(38px, 5vw, 58px);
-    line-height: 1.1;
-    font-weight: 700;
-    margin: 0 0 22px;
-    letter-spacing: -0.01em;
-  }
-
-  .lede {
-    font-size: 17px;
-    line-height: 1.65;
-    color: var(--muted);
-    max-width: 480px;
-    margin: 0 0 34px;
-  }
-
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 22px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, var(--pink), var(--purple));
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: opacity 0.15s ease;
-  }
-
-  .contact-link:hover { opacity: 0.9; }
-  .contact-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-
-  /* Visual side */
-  .visual {
-    position: relative;
-    height: 420px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .card {
-    position: relative;
-    width: 300px;
-    height: 340px;
-    border-radius: 22px;
-    background:
-      repeating-linear-gradient(
-        45deg,
-        rgba(139, 92, 246, 0.10),
-        rgba(139, 92, 246, 0.10) 10px,
-        transparent 10px,
-        transparent 20px
-      ),
-      #f5f3fa;
-    transform: rotate(-4deg);
-    box-shadow: 0 30px 60px -25px rgba(20, 20, 26, 0.25);
-  }
-
-  .card-footer {
-    position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    background: #fff;
-    border-radius: 14px;
-    padding: 16px 18px;
-    transform: rotate(4deg);
-  }
-
-  .tag-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
-  .tag {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 999px;
-  }
-
-  .tag.purple { background: rgba(139, 92, 246, 0.12); color: var(--purple); }
-  .tag.pink { background: rgba(236, 72, 153, 0.12); color: var(--pink); }
-
-  .card-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    margin: 0;
-  }
-
-  .float-tag {
-    position: absolute;
-    top: 18px;
-    right: -10px;
-    background: #fff;
-    border-radius: 14px;
-    padding: 12px 18px;
-    box-shadow: 0 20px 40px -20px rgba(20, 20, 26, 0.3);
-    font-size: 13px;
-  }
-
-  .float-tag .label {
-    color: var(--muted);
-    font-size: 11px;
-    margin-bottom: 2px;
-  }
-
-  .float-tag .value {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    color: var(--muted);
-  }
-
-  .float-note {
-    position: absolute;
-    left: -16px;
-    bottom: 92px;
-    background: #14141a;
-    color: #fff;
-    border-radius: 12px;
-    padding: 12px 16px;
-    transform: rotate(-3deg);
-    box-shadow: 0 20px 40px -18px rgba(20, 20, 26, 0.45);
-  }
-
-  .float-note .label {
-    font-size: 11px;
-    color: #b9b9c4;
-    margin-bottom: 2px;
-  }
-
-  .float-note .value {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    background: linear-gradient(90deg, #f472b6, #fb923c);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 15px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 26px 6vw 40px;
-    font-size: 13px;
-    color: var(--muted);
-    border-top: 1px solid var(--line);
-  }
-
-  @media (max-width: 860px) {
-    main {
-      grid-template-columns: 1fr;
-      padding-top: 6vh;
-    }
-    .visual { order: -1; height: 320px; margin-bottom: 10px; }
-    .card { width: 240px; height: 270px; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<nav>
-  <div class="brand">
-    <div class="brand-mark">AI</div>
-    Ayşe Inal
-  </div>
-  <div class="status-pill"><span class="dot"></span> Building in progress</div>
-</nav>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<main>
-  <div class="copy">
-    <div class="eyebrow"><span class="dot"></span> Portfolio · Coming soon</div>
-    <h1>Something worth<br>the wait is <span class="gradient-text">under construction.</span></h1>
-    <p class="lede">
-      Ayşe's portfolio is being rebuilt from the ground up. Come back soon to see the finished work — or leave your email and be the first to know when it's live.
-    </p>
-    <a class="contact-link" href="mailto:hello@ayseinal.co.uk">Say hello — hello@ayseinal.co.uk →</a>
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">AI</span>
+      <span class="brand-name">Ayse Inal</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="showcase.html">Showcase</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
   </div>
+</header>
 
-  <div class="visual">
-    <div class="card">
-      <div class="float-tag">
-        <div class="label">status</div>
-        <div class="value">in progress</div>
+<main id="main">
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="hero-pill">Instructional Designer &amp; E-Learning Developer</p>
+      <h1>
+        I design learning that changes behaviour.<br>
+        <span class="grad-text">Not learning that gets completed.</span>
+      </h1>
+      <p class="hero-sub">
+        20+ years turning compliance, tech and operational training into programmes that are
+        creative, evidence-based, and measurable from day one — using gamification,
+        scenario-based design, and Kirkpatrick to prove they work.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-grad" href="showcase.html">View my work &nbsp;→</a>
+        <a class="btn btn-outline" href="contact.html">Start a conversation</a>
       </div>
-      <div class="float-note">
-        <div class="label">launch</div>
-        <div class="value">coming soon</div>
-      </div>
-      <div class="card-footer">
-        <div class="tag-row">
-          <span class="tag purple">Portfolio</span>
-          <span class="tag pink">Draft</span>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-value">20+</div>
+          <div class="stat-label">years in digital learning</div>
         </div>
-        <p class="card-title">New site — in the works</p>
+        <div class="divider" role="presentation"></div>
+        <div>
+          <div class="stat-value grad-text-rv">TechWomen100</div>
+          <div class="stat-label">finalist</div>
+        </div>
+        <div class="divider" role="presentation"></div>
+        <div>
+          <div class="stat-value">MA</div>
+          <div class="stat-label">Education &amp; Technology, UCL</div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-card-wrap">
+        <div class="feature-card">
+          <div class="thumb feature-thumb">
+            <div class="thumb-fill" style="background:repeating-linear-gradient(135deg,#7c3aed26 0 11px,#7c3aed0d 11px 22px)"></div>
+          </div>
+          <div class="feature-body">
+            <div class="feature-tags">
+              <span class="tag">Storyline</span>
+              <span class="tag tag-rose">Scenario-based</span>
+            </div>
+            <div class="feature-title">Under Pressure: Anti-Bribery</div>
+            <div class="feature-meta">◷ 25 min · branching sim</div>
+          </div>
+        </div>
+        <div class="float-badge float-a">
+          <div class="badge-label">completion</div>
+          <div class="badge-value">measured</div>
+        </div>
+        <div class="float-badge float-b">
+          <div class="badge-label">what changed</div>
+          <div class="badge-value">+38% on-the-job</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- rotating strip of recent builds (populated from js/courses-data.js) -->
+  <section class="marquee-section">
+    <div class="container marquee-head">
+      <span class="marquee-label">Recent builds</span>
+      <a class="link-accent" href="showcase.html">See the full showcase →</a>
+    </div>
+    <div class="marquee-mask" aria-hidden="true">
+      <div class="marquee-track" data-marquee-track></div>
+    </div>
+  </section>
+
+  <!-- statement band -->
+  <section class="container statement-wrap">
+    <div class="statement">
+      <div class="statement-copy">
+        <h2>
+          Many L&amp;D teams measure completion.<br>
+          <span class="grad-text-warm">I measure what changed.</span>
+        </h2>
+        <p>
+          Every programme I build starts with the behaviour it needs to shift and the
+          evidence that proves it did — mapped across all four Kirkpatrick levels.
+        </p>
+      </div>
+      <div class="statement-cta">
+        <a class="btn btn-light" href="contact.html">Let's build something →</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer>
-  © 2026 Ayşe Inal. All rights reserved.
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">AI</span>
+      <span>© 2026 Ayse Inal — Instructional Designer</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="showcase.html">Showcase</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
 </footer>
 
+<script src="js/courses-data.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

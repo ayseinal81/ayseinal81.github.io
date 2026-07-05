@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Showcase — Ayse Inal</title>
+<meta name="description" content="A living gallery of e-learning projects by Ayse Inal — compliance, onboarding, software training and more. Launch any course without leaving the page.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">AI</span>
+      <span class="brand-name">Ayse Inal</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="showcase.html" aria-current="page">Showcase</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="container page-head">
+    <div class="eyebrow">Showcase</div>
+    <h1>Selected e-learning projects</h1>
+    <p class="lede">A living gallery of courses. Launch any of them right here without leaving the page.</p>
+  </section>
+
+  <section class="container filter-bar">
+    <div class="filter-left">
+      <span class="filter-label" id="filter-mode-label">Filter by</span>
+      <div class="seg" role="group" aria-labelledby="filter-mode-label">
+        <button type="button" class="seg-btn" data-mode="tool" aria-pressed="true">Tool</button>
+        <button type="button" class="seg-btn" data-mode="tag" aria-pressed="false">Category</button>
+      </div>
+    </div>
+    <span class="result-count" data-result-count aria-live="polite"></span>
+  </section>
+
+  <section class="container chip-row" data-chips aria-label="Filter courses"></section>
+
+  <section class="container grid-wrap">
+    <noscript>
+      <p class="footnote">This gallery is generated from a course data file and needs JavaScript to display.</p>
+    </noscript>
+    <div class="course-grid" data-grid></div>
+    <div class="empty-state" data-empty hidden>
+      <p>No courses match this filter yet.</p>
+    </div>
+    <p class="footnote">Add a course by appending one object to <span class="mono-accent">js/courses-data.js</span> — no markup changes needed.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">AI</span>
+      <span>© 2026 Ayse Inal — Instructional Designer</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="showcase.html">Showcase</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- lightbox course viewer -->
+<div class="lightbox" data-lightbox hidden>
+  <button class="lightbox-backdrop" data-lb-close tabindex="-1" aria-hidden="true"></button>
+  <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lb-title">
+    <div class="lb-head">
+      <div>
+        <div class="lb-title" id="lb-title"></div>
+        <div class="lb-src">src: <span data-lb-src></span></div>
+      </div>
+      <button type="button" class="lb-close" data-lb-close aria-label="Close course viewer">✕</button>
+    </div>
+    <div class="lb-body">
+      <iframe class="lb-frame" data-lb-frame title="" allow="fullscreen"></iframe>
+      <div class="lb-loading" data-lb-loading hidden>
+        <div class="lb-loading-fill" data-lb-loading-fill></div>
+        <div class="lb-loading-card">
+          <div class="lb-spinner" aria-hidden="true"></div>
+          Loading course…
+          <p class="lb-hint" data-lb-hint hidden>
+            Taking a while? <a data-lb-hint-link href="#" target="_blank" rel="noopener">Open it in a new tab ↗</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="lb-foot">
+      <span class="lb-source-note" data-lb-note></span>
+      <a class="btn-dark" data-lb-open href="#" target="_blank" rel="noopener">Open in new tab ↗</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/courses-data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/showcase.js"></script>
+</body>
+</html>
