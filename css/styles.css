@@ -5,6 +5,9 @@
    ========================================================================== */
 
 :root {
+  /* color-scheme is how the browser (and extensions like Dark Reader)
+     know which theme is active — keep it in sync with the palette */
+  color-scheme: light;
   --ink: #1c1524;
   --muted: #615a6b;
   --faint: #756e82;
@@ -17,11 +20,49 @@
   --violet: #7c3aed;
   --orange: #f97316;
   --teal: #0d9488;
+  --bg: #fff;
+  --card: #fff;
+  --nav-bg: rgba(255, 255, 255, .82);
+  --line-strong: #e6e2ee;
+  --tint-violet: #f5efff;
+  --tint-rose: #ffeef2;
+  --tint-orange: #fff1e6;
+  --band: #1c1524;      /* the deliberately-dark surfaces (statement, badges) */
+  --on-ink: #fff;       /* text placed on an --ink background */
   --grad: linear-gradient(120deg, #e11d48, #7c3aed 60%, #f97316);
   --grad-logo: linear-gradient(135deg, #e11d48, #7c3aed 55%, #f97316);
   --font-head: Poppins, Inter, system-ui, sans-serif;
   --font-body: Inter, system-ui, -apple-system, sans-serif;
   --font-mono: 'Courier New', monospace;
+}
+
+/* Dark theme — set via data-theme on <html> (see the inline script in each
+   page's <head> and the toggle in js/main.js). The rose/violet/orange accents
+   are lifted a step so small text keeps contrast on the dark ground; the
+   gradient buttons keep their original colours (white text still passes). */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #ece7f3;
+  --muted: #a79ebb;
+  --faint: #9d94b0;
+  --hairline: #2b2338;
+  --hairline-soft: #261f31;
+  --chipline: #322a41;
+  --bg-soft: #1a1424;
+  --seg-bg: #251d33;
+  --rose: #fb7185;
+  --violet: #a78bfa;
+  --orange: #fb923c;
+  --teal: #2dd4bf;
+  --bg: #120d1b;
+  --card: #1c1627;
+  --nav-bg: rgba(18, 13, 27, .82);
+  --line-strong: #372e48;
+  --tint-violet: #2b2144;
+  --tint-rose: #3a1b28;
+  --tint-orange: #3a2517;
+  --band: #1f1729;
+  --on-ink: #171021;
 }
 
 * { box-sizing: border-box; }
@@ -30,7 +71,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: #fff;
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
@@ -39,6 +80,7 @@ body {
 }
 
 ::selection { background: #f5d6df; color: #1c1524; }
+[data-theme="dark"] ::selection { background: #46306e; color: #f2edf9; }
 
 img { max-width: 100%; display: block; }
 
@@ -83,7 +125,7 @@ body.no-scroll { overflow: hidden; }
   top: 0;
   z-index: 100;
   background: var(--ink);
-  color: #fff;
+  color: var(--on-ink);
   padding: 10px 18px;
   border-radius: 0 0 12px 0;
   font-weight: 600;
@@ -120,6 +162,11 @@ body.no-scroll { overflow: hidden; }
   color: transparent;
 }
 
+/* brighter gradient stops for text clipped on a dark ground */
+[data-theme="dark"] .grad-text { background-image: linear-gradient(120deg, #fb7185, #a78bfa 60%, #fb923c); }
+[data-theme="dark"] .grad-text-warm { background-image: linear-gradient(120deg, #fb923c, #fb7185, #a78bfa); }
+[data-theme="dark"] .grad-text-rv { background-image: linear-gradient(120deg, #fb7185, #a78bfa); }
+
 /* ---------- buttons ---------- */
 
 .btn {
@@ -147,14 +194,15 @@ body.no-scroll { overflow: hidden; }
 
 .btn-outline {
   color: var(--ink);
-  background: #fff;
-  border: 1.5px solid #e6e2ee;
+  background: var(--card);
+  border: 1.5px solid var(--line-strong);
   padding: 15px 26px;
 }
 .btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
 
 .btn-light {
-  color: var(--ink);
+  /* sits on the always-dark statement band, so fixed colours in both themes */
+  color: #1c1524;
   background: #fff;
   padding: 16px 30px;
 }
@@ -165,7 +213,7 @@ body.no-scroll { overflow: hidden; }
   font-family: var(--font-head);
   font-weight: 600;
   font-size: 14px;
-  color: #fff;
+  color: var(--on-ink);
   background: var(--ink);
   border-radius: 11px;
   padding: 11px 20px;
@@ -182,7 +230,7 @@ body.no-scroll { overflow: hidden; }
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(255, 255, 255, .82);
+  background: var(--nav-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--hairline);
@@ -263,11 +311,31 @@ body.no-scroll { overflow: hidden; }
   background: linear-gradient(90deg, #e11d48, #7c3aed, #f97316);
 }
 
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  border: 1px solid var(--hairline);
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--faint);
+  transition: color .15s, border-color .15s;
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--line-strong); }
+.theme-toggle svg { display: block; }
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
 @media (max-width: 480px) {
   .brand-name { display: none; }
-  .nav-links { gap: 16px; }
+  .nav-links { gap: 12px; }
   .nav-links a { font-size: 14px; }
-  .nav-inner { padding: 0 20px; }
+  .nav-inner { padding: 0 16px; gap: 14px; }
+  .theme-toggle { width: 32px; height: 32px; }
 }
 
 /* ---------- footer ---------- */
@@ -337,8 +405,8 @@ body.no-scroll { overflow: hidden; }
   gap: 8px;
   padding: 7px 15px;
   border-radius: 999px;
-  background: #f7f3ff;
-  border: 1px solid #ece4ff;
+  background: var(--tint-violet);
+  border: 1px solid var(--chipline);
   font-size: 13px;
   font-weight: 600;
   color: var(--violet);
@@ -394,7 +462,7 @@ body.no-scroll { overflow: hidden; }
 .feature-card {
   border-radius: 22px;
   border: 1px solid var(--hairline);
-  background: #fff;
+  background: var(--card);
   box-shadow: 0 30px 60px -28px rgba(28, 21, 36, .28);
   overflow: hidden;
   transform: rotate(-2.5deg);
@@ -412,9 +480,9 @@ body.no-scroll { overflow: hidden; }
   padding: 4px 9px;
   border-radius: 6px;
   color: var(--violet);
-  background: #f5efff;
+  background: var(--tint-violet);
 }
-.tag-rose { color: var(--rose); background: #ffeef2; }
+.tag-rose { color: var(--rose); background: var(--tint-rose); }
 
 .feature-title { font-family: var(--font-head); font-weight: 600; font-size: 16px; }
 
@@ -437,7 +505,7 @@ body.no-scroll { overflow: hidden; }
 .float-a {
   top: -16px;
   right: -14px;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--hairline);
   box-shadow: 0 16px 30px -14px rgba(28, 21, 36, .3);
 }
@@ -447,7 +515,7 @@ body.no-scroll { overflow: hidden; }
 .float-b {
   bottom: -18px;
   left: -20px;
-  background: var(--ink);
+  background: var(--band);
   color: #fff;
   box-shadow: 0 16px 34px -12px rgba(28, 21, 36, .5);
   animation-duration: 6.5s;
@@ -515,7 +583,7 @@ body.no-scroll { overflow: hidden; }
 .marquee-card {
   width: 230px;
   flex: none;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--hairline);
   border-radius: 16px;
   overflow: hidden;
@@ -540,7 +608,7 @@ body.no-scroll { overflow: hidden; }
 
 .statement {
   border-radius: 26px;
-  background: var(--ink);
+  background: var(--band);
   color: #fff;
   padding: clamp(36px, 5vw, 58px) clamp(28px, 4.5vw, 52px);
   display: flex;
@@ -673,9 +741,9 @@ body.no-scroll { overflow: hidden; }
   text-decoration: none;
   transition: border-color .18s;
 }
-.side-link.linkedin { color: var(--ink); background: #fff; border: 1.5px solid #e6e2ee; }
+.side-link.linkedin { color: var(--ink); background: var(--card); border: 1.5px solid var(--line-strong); }
 .side-link.linkedin:hover { border-color: var(--ink); }
-.side-link.email { color: #fff; background: var(--ink); border: 1.5px solid var(--ink); }
+.side-link.email { color: var(--on-ink); background: var(--ink); border: 1.5px solid var(--ink); }
 
 .about-main { flex: 1 1 460px; min-width: 320px; }
 
@@ -685,6 +753,7 @@ body.no-scroll { overflow: hidden; }
   color: #3c3648;
   margin: 0 0 20px;
 }
+[data-theme="dark"] .about-main .lead { color: #d4cde0; }
 .about-main .lead strong { color: var(--ink); font-weight: 600; }
 
 .about-main .body-para {
@@ -723,7 +792,7 @@ body.no-scroll { overflow: hidden; }
 .tool-chips span {
   font-size: 13px;
   font-weight: 500;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--chipline);
   padding: 6px 11px;
   border-radius: 8px;
@@ -779,7 +848,7 @@ body.no-scroll { overflow: hidden; }
   font-size: 13.5px;
   font-weight: 500;
   color: var(--ink);
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--chipline);
   padding: 9px 14px;
   border-radius: 10px;
@@ -801,9 +870,9 @@ body.no-scroll { overflow: hidden; }
   align-items: center;
   justify-content: center;
 }
-.step-num.n1 { background: #ffeef2; color: var(--rose); }
-.step-num.n2 { background: #f5efff; color: var(--violet); }
-.step-num.n3 { background: #fff1e6; color: var(--orange); }
+.step-num.n1 { background: var(--tint-rose); color: var(--rose); }
+.step-num.n2 { background: var(--tint-violet); color: var(--violet); }
+.step-num.n3 { background: var(--tint-orange); color: var(--orange); }
 
 .approach-step p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--muted); }
 .approach-step strong { color: var(--ink); font-weight: 600; }
@@ -846,6 +915,7 @@ body.no-scroll { overflow: hidden; }
   color: var(--ink);
   box-shadow: 0 2px 6px -2px rgba(28, 21, 36, .25);
 }
+[data-theme="dark"] .seg-btn[aria-pressed="true"] { background: #382e4c; }
 
 .result-count { font-size: 14px; color: var(--faint); }
 
@@ -865,15 +935,16 @@ body.no-scroll { overflow: hidden; }
   border-radius: 999px;
   cursor: pointer;
   transition: all .15s;
-  background: #fff;
-  color: #6f6878;
+  background: var(--card);
+  color: var(--muted);
   border: 1px solid var(--chipline);
 }
 .chip:hover { border-color: #c9c2d6; color: var(--ink); }
+[data-theme="dark"] .chip:hover { border-color: #4a4060; }
 
 .chip[aria-pressed="true"] {
   background: var(--ink);
-  color: #fff;
+  color: var(--on-ink);
   border-color: var(--ink);
 }
 
@@ -889,7 +960,7 @@ body.no-scroll { overflow: hidden; }
   border: 1px solid var(--hairline);
   border-radius: 18px;
   overflow: hidden;
-  background: #fff;
+  background: var(--card);
   display: flex;
   flex-direction: column;
   transition: transform .2s, box-shadow .2s;
@@ -909,7 +980,7 @@ body.no-scroll { overflow: hidden; }
   left: 12px;
   font-size: 11.5px;
   font-weight: 600;
-  color: var(--ink);
+  color: #1c1524;
   background: rgba(255, 255, 255, .92);
   padding: 4px 10px;
   border-radius: 7px;
@@ -921,7 +992,7 @@ body.no-scroll { overflow: hidden; }
   right: 12px;
   font-size: 11.5px;
   font-weight: 500;
-  color: var(--ink);
+  color: #1c1524;
   background: rgba(255, 255, 255, .92);
   padding: 4px 10px;
   border-radius: 7px;
@@ -1008,6 +1079,22 @@ body.no-scroll { overflow: hidden; }
   display: flex;
   flex-direction: column;
   box-shadow: 0 40px 90px -30px rgba(20, 15, 26, .7);
+}
+
+/* Embedded courses are authored against a light page, so the viewer panel
+   keeps the light palette in both themes — the course always sits on white. */
+[data-theme="dark"] .lightbox-panel {
+  color-scheme: light;
+  color: #1c1524;
+  --ink: #1c1524;
+  --muted: #615a6b;
+  --faint: #756e82;
+  --hairline: #efecf4;
+  --bg-soft: #fbfaff;
+  --seg-bg: #f4f1fa;
+  --violet: #7c3aed;
+  --orange: #f97316;
+  --on-ink: #fff;
 }
 
 .lb-head {
@@ -1180,9 +1267,9 @@ body.no-scroll { overflow: hidden; }
   justify-content: center;
   font-size: 18px;
 }
-.email-card .contact-card-icon { background: #ffeef2; color: var(--rose); }
+.email-card .contact-card-icon { background: var(--tint-rose); color: var(--rose); }
 .linkedin-card .contact-card-icon {
-  background: #f5efff;
+  background: var(--tint-violet);
   color: var(--violet);
   font-family: var(--font-head);
   font-weight: 700;
@@ -1218,9 +1305,9 @@ body.no-scroll { overflow: hidden; }
   font-family: var(--font-body);
   font-size: 15px;
   padding: 13px 15px;
-  border: 1.5px solid #e6e2ee;
+  border: 1.5px solid var(--line-strong);
   border-radius: 11px;
-  background: #fff;
+  background: var(--card);
   color: var(--ink);
 }
 
@@ -1253,6 +1340,8 @@ body.no-scroll { overflow: hidden; }
 .form-status[hidden] { display: none; }
 .form-status.ok { background: #ecfdf5; color: #047857; font-weight: 500; }
 .form-status.error { background: #fff1f2; color: #be123c; font-weight: 500; }
+[data-theme="dark"] .form-status.ok { background: #0d2b21; color: #34d399; }
+[data-theme="dark"] .form-status.error { background: #391722; color: #fb7185; }
 .form-status a { color: inherit; font-weight: 600; }
 
 .form-note {

@@ -33,6 +33,27 @@
 
   window.PORTFOLIO = { renderThumb: renderThumb, embedSrc: embedSrc };
 
+  /* ---- theme toggle (nav) ----
+     The inline script in each page's <head> applies the saved theme before
+     first paint; this only handles the click and persists the choice. */
+
+  var themeToggle = document.querySelector('[data-theme-toggle]');
+  if (themeToggle) {
+    var syncThemeToggle = function () {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.setAttribute('aria-pressed', String(dark));
+      themeToggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    };
+    themeToggle.addEventListener('click', function () {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (dark) document.documentElement.removeAttribute('data-theme');
+      else document.documentElement.setAttribute('data-theme', 'dark');
+      try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (err) { /* storage blocked */ }
+      syncThemeToggle();
+    });
+    syncThemeToggle();
+  }
+
   /* ---- home: "Recent builds" strip ---- */
 
   var track = document.querySelector('[data-marquee-track]');
