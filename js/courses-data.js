@@ -86,5 +86,15 @@ const COURSES = [
     duration: '20 min',
     accent: '#e11d48',
     source: { type: 'local', path: 'courses/gdpr-refresher/index.html' }
+  },
+  {
+    id: 'test-course',
+    title: 'A Test Course',
+    description: 'A portfolio test',
+    tools: ['Rise', 'Storyline'],
+    tags: ['SCORM'],
+    duration: '1 min',
+    accent: '#e11d48',
+    source: { type: 'local', path: 'courses/test-course/index.html' }
   }
 ];
